@@ -55,9 +55,18 @@ namespace Superhero_Project.Controllers
         }
 
         // GET: Superhero/Edit/5
-        public ActionResult Edit(Superhero id)
-        {           
-            return View(id);
+        public ActionResult Edit(int id)
+        {
+            //put into try catch
+            try
+            {
+                Superhero superhero = context.Superheroes.Where(s => s.Id == id).Single();
+                return View(superhero);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Superhero/Edit/5
@@ -67,8 +76,13 @@ namespace Superhero_Project.Controllers
             try
             {
                 // TODO: Add update logic here 
-                context.Superheroes.Where(s => s.Id == id);
-                context.Superheroes.AddOrUpdate(superhero);
+                Superhero superhero1 = context.Superheroes.Where(s => s.Id == id).Single();
+                superhero1.Name = superhero.Name;
+                superhero1.PrimaryAbility = superhero.PrimaryAbility;
+                superhero1.SecondaryAbility = superhero.SecondaryAbility;
+                superhero1.AlterEgo = superhero.AlterEgo;
+                superhero1.Catchphrase = superhero.Catchphrase;
+
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -79,7 +93,7 @@ namespace Superhero_Project.Controllers
         }
 
         // GET: Superhero/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Superhero id)
         {
             return View(id);
         }
@@ -91,6 +105,7 @@ namespace Superhero_Project.Controllers
             try
             {
                 // TODO: Add delete logic here
+                //superhero = context.Superheroes.Where(s => s.Id == id);
                 context.Superheroes.Remove(superhero);
                 context.SaveChanges();
                 return RedirectToAction("Index");
