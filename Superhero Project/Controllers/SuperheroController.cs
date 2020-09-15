@@ -12,6 +12,7 @@ namespace Superhero_Project.Controllers
     {
         ApplicationDbContext context;
 
+
         public SuperheroController()
         {
             context = new ApplicationDbContext();
@@ -19,7 +20,8 @@ namespace Superhero_Project.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            return View();
+            List<Superhero> superheroes = context.Superheroes.ToList();
+            return View(superheroes);
         }
 
         // GET: Superhero/Details/5
@@ -54,18 +56,18 @@ namespace Superhero_Project.Controllers
 
         // GET: Superhero/Edit/5
         public ActionResult Edit(Superhero id)
-        {
-            
+        {           
             return View(id);
         }
 
         // POST: Superhero/Edit/5
         [HttpPost]
-        public ActionResult Edit(Superhero id, Superhero superhero )
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
-                // TODO: Add update logic here               
+                // TODO: Add update logic here 
+                context.Superheroes.Where(s => s.Id == id);
                 context.Superheroes.AddOrUpdate(superhero);
                 context.SaveChanges();
                 return RedirectToAction("Index");

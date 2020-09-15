@@ -28,6 +28,7 @@ namespace Superhero_Project.Models
         }
 
         public static ApplicationDbContext Create()
+        
         {
             return new ApplicationDbContext();
         }
