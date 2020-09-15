@@ -11,6 +11,9 @@ namespace Superhero_Project.Models
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
-        public int MyProperty { get; set; }
+        public string AlterEgo { get; set; }
+        public string PrimaryAbility { get; set; }
+        public string SecondaryAbility { get; set; }
+        public string Catchphrase { get; set; }
     }
 }
