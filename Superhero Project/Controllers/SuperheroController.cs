@@ -28,7 +28,7 @@ namespace Superhero_Project.Controllers
         public ActionResult Details(int id)
         {
             Superhero superhero = context.Superheroes.Where(s => s.Id == id).Single();
-            return View(id);
+            return View(superhero);
         }
 
         // GET: Superhero/Create
