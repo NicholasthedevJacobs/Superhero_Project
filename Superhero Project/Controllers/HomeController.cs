@@ -10,7 +10,9 @@ namespace Superhero_Project.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Superhero");
+            
+            //redirect to action make sure it can be overloaded so that it can redirect to a a page on a different controller
         }
 
         public ActionResult About()
