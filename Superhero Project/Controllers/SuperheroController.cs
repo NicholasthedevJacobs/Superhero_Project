@@ -93,9 +93,18 @@ namespace Superhero_Project.Controllers
         }
 
         // GET: Superhero/Delete/5
-        public ActionResult Delete(Superhero id)
+        public ActionResult Delete(int id)
         {
-            return View(id);
+            try
+            {
+                Superhero superhero = context.Superheroes.Where(s => s.Id == id).Single();
+                return View(superhero);
+            }
+            catch
+            {
+                return View(id);
+            }
+           
         }
 
         // POST: Superhero/Delete/5
